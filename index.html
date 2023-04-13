@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NYC Wi-fi Hotspot Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
@@ -26,10 +26,15 @@
         <div class="description">
             Color of the marker denotes type of location (ex. Outdoor, Indoor, Subway Station, or Library)
         </div>
+        <div class="filters">
+            <button id="outdoor" class="filterbtn">Outdoor</button>
+            <button id="indoor" class="filterbtn">Indoor</button>
+            <button id="subway" class="filterbtn">Subway</button>
+            <button id="library" class="filterbtn">Library</button>
+        </div>
         <div class="description">
             Hover over the button below and click a Borough to fly to.
         </div>
-
         <div class="dropdown">
             <button class="dropbtn">Choose a Borough</button>
             <div class="dropdown-content">

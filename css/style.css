@@ -35,6 +35,46 @@ body {
     margin-bottom: 10px;
 }
 
+.filters {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.filterbtn {
+    color: white;
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+    border-color: black;
+}
+
+.filterbtn:hover {
+    border-radius: 50%;
+    border: None;
+    border-color: rgb(102, 99, 99);
+}
+
+.filterbtn.filter_active {
+    border-radius: 50%;
+    border: None;
+}
+
+#outdoor {
+    background-color: #875AAF;
+}
+
+#indoor {
+    background-color: #26C7BD;
+}
+
+#subway {
+    background-color: #586DD5;
+}
+
+#library {
+    background-color: #D649B3;
+}
 
 /* https://www.w3schools.com/howto/howto_css_dropdown.asp */
 .dropbtn {
@@ -43,6 +83,7 @@ body {
     padding: 16px;
     font-size: 16px;
     border: none;
+    cursor: pointer;
 }
 
 .dropdown {
@@ -57,6 +98,7 @@ body {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    cursor: pointer;
 }
 
 .dropdown-content a {

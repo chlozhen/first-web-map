@@ -11,42 +11,103 @@ const map = new mapboxgl.Map({
 });
 
 
-// hotspot markers
+
+// set all hotspot markers
+var outdoor_markers = []
+var indoor_markers = []
+var subway_markers = []
+var library_markers = []
+
 wifihotspot_data.forEach(function (hotspot_record) {
   const hotspot_popup = new mapboxgl.Popup({ offset: 25 }).setText(
-    `${hotspot_record.Type} Wifi!!
-      Provider: ${hotspot_record.Provider}
-      Location name: ${hotspot_record.Name}
-      Location address: ${hotspot_record.Location}, ${hotspot_record.Location_T}
-      Borough: ${hotspot_record["Borough Name"]}
-      SSID: ${hotspot_record.SSID}
-      Notes: ${hotspot_record.Remarks}`
+    "<html>" + hotspot_record.Type + ' Wifi!!'
+    + ' Provider: ' + hotspot_record.Provider
+    + ' SSID: ' + hotspot_record.SSID
+    + ' Location Type: ' + hotspot_record.Location_T
+    + ' Location Name: ' + hotspot_record.Name
+    + ' Location Address: ' + hotspot_record.Location
+    + ' Borough: ' + hotspot_record["Borough Name"]
+    + ' Notes: ' + hotspot_record.Remarks
+    + "</html>"
   );
 
-  var hotspot_color = "#62237d"                           // Outdoor locations
+  var hotspot_color = "#875AAF"                            // Outdoor locations
   if (hotspot_record.Location_T.includes("Indoor")) {      // Indoor locations
-    hotspot_color = "#14B35B"
+    hotspot_color = "#26C7BD"
   }
   if (hotspot_record.Location_T == "Subway Station") {     // Subway locations
-    hotspot_color = "#D649B3"
+    hotspot_color = "#586DD5"
   }
   if (hotspot_record.Location_T == "Library") {            // Library locations
-    hotspot_color = "#E6DF27"
+    hotspot_color = "#D649B3"
   }
 
-  new mapboxgl.Marker({
+  hotspot_marker = new mapboxgl.Marker({
     color: hotspot_color,
     scale: 0.75
   })
     .setLngLat([hotspot_record.Longitude, hotspot_record.Latitude])
     .setPopup(hotspot_popup)
     .addTo(map)
+
+  if (hotspot_record.Location_T.includes("Outdoor")) {      // Outdoor locations
+    outdoor_markers.push(hotspot_marker)
+  }
+  if (hotspot_record.Location_T.includes("Indoor")) {      // Indoor locations
+    indoor_markers.push(hotspot_marker)
+  }
+  if (hotspot_record.Location_T == "Subway Station") {     // Subway locations
+    subway_markers.push(hotspot_marker)
+  }
+  if (hotspot_record.Location_T == "Library") {            // Library locations
+    library_markers.push(hotspot_marker)
+  }
+
 })
 
-// event listeners
+
+
+// functions for filtering markers
+function remove_marker(marker_list) {
+  for (var i = 0; i < marker_list.length; i++) {
+    marker_list[i].remove()
+  }
+}
+
+function add_marker(marker_list) {
+  for (var i = 0; i < marker_list.length; i++) {
+    marker_list[i].addTo(map)
+  }
+}
+
+function filter_markers(markerID, marker_list, buttonClass, activeClass) {
+  $('#' + markerID).on('click', function () {
+    var ele = document.getElementById(markerID)
+    if (ele.className.includes(activeClass)) {
+      ele.className = buttonClass
+      add_marker(marker_list)
+    }
+    else {
+      ele.className = buttonClass + " " + activeClass
+      remove_marker(marker_list)
+    }
+  })
+}
+
+const markerIDs = ["outdoor", "indoor", "subway", "library"]
+var marker_lists = [outdoor_markers, indoor_markers, subway_markers, library_markers]
+var filterbtnClass = "filterbtn"
+var filteractiveClass = "filter_active"
+for (var i = 0; i < markerIDs.length; i++) {
+  filter_markers(markerIDs[i], marker_lists[i], filterbtnClass, filteractiveClass)
+}
+
+
+
+// flying event listeners
 $('#zoom-to-manh').on('click', function () {
   map.flyTo({
-    center: [-73.97644389577336,40.769693554938236],
+    center: [-73.97644389577336, 40.769693554938236],
     zoom: 11
   })
 })
