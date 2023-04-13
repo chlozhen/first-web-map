@@ -1,6 +1,8 @@
 # Web Map: NYC Wi-Fi Hotspot Locations
 ### NYU GIS Spring 2023 Week 3: First Web Map
 
+Webmap: https://chlozhen.github.io/webmap-nyc-wifi-hotspot/
+
 Data: NYC Wi-Fi Hotspot Locations
 * Data Source: https://data.cityofnewyork.us/City-Government/NYC-Wi-Fi-Hotspot-Locations/yjub-udmw
 * Agency: Office of Technology and Innovation (OTI)
