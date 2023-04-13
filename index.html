@@ -3,17 +3,18 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Display a map on a webpage</title>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>NYC Wi-fi Hotspot Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
     <div class="sidebar">
         <div class="title">
-            NYU Wi-fi Hotspot Locations
+            NYC Wi-fi Hotspot Locations
         </div>
         <div class="description">
             Markers on the map indicate a Wi-fi Hotspot Location.
@@ -25,13 +26,30 @@
         <div class="description">
             Color of the marker denotes type of location (ex. Outdoor, Indoor, Subway Station, or Library)
         </div>
-        
         <div class="description">
-            <a href="https://data.cityofnewyork.us/City-Government/NYC-Wi-Fi-Hotspot-Locations/yjub-udmw">Data Source</a>
+            Hover over the button below and click a Borough to fly to.
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Choose a Borough</button>
+            <div class="dropdown-content">
+                <a id="zoom-to-manh">Manhattan</a>
+                <a id="zoom-to-broo">Brooklyn</a>
+                <a id="zoom-to-quee">Queens</a>
+                <a id="zoom-to-bron">Bronx</a>
+                <a id="zoom-to-stat">Staten Island</a>
+            </div>
+        </div>
+
+        <div class="description">
+            <a href="https://data.cityofnewyork.us/City-Government/NYC-Wi-Fi-Hotspot-Locations/yjub-udmw">Data
+                Source</a>
         </div>
     </div>
     <div id="map"></div>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="js/data.js"></script>
     <script src="js/script.js"></script>
 </body>
