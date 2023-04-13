@@ -1,7 +1,7 @@
+
+// initiate new york city map view
 mapboxgl.accessToken = "pk.eyJ1IjoiY2hsb3poZW4iLCJhIjoiY2xnNXFlMGkxMDF0YzNobjBzeDZ3dTRodyJ9.aEmIpsNVZeh27U2L1z7j_A"
-
 const NYC_COORDS = [-74.00214, 40.71882]
-
 const map = new mapboxgl.Map({
   container: 'map',                         // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -19,30 +19,30 @@ var subway_markers = []
 var library_markers = []
 
 wifihotspot_data.forEach(function (hotspot_record) {
-  const hotspot_popup = new mapboxgl.Popup({ offset: 25 }).setText(
-    "<html>" + hotspot_record.Type + ' Wifi!!'
-    + ' Provider: ' + hotspot_record.Provider
-    + ' SSID: ' + hotspot_record.SSID
-    + ' Location Type: ' + hotspot_record.Location_T
-    + ' Location Name: ' + hotspot_record.Name
-    + ' Location Address: ' + hotspot_record.Location
-    + ' Borough: ' + hotspot_record["Borough Name"]
-    + ' Notes: ' + hotspot_record.Remarks
-    + "</html>"
-  );
 
-  var hotspot_color = "#875AAF"                            // Outdoor locations
-  if (hotspot_record.Location_T.includes("Indoor")) {      // Indoor locations
+  let hotspot_popup_text = hotspot_record.Type + ' Wifi!!'  // create pop up text
+    + '\nProvider: ' + hotspot_record.Provider
+    + '\nSSID: ' + hotspot_record.SSID
+    + '\nLocation Type: ' + hotspot_record.Location_T
+    + '\nLocation Name: ' + hotspot_record.Name
+    + '\nLocation Address: ' + hotspot_record.Location
+    + '\nBorough: ' + hotspot_record["Borough Name"]
+    + '\nNotes: ' + hotspot_record.Remarks
+  const hotspot_popup = new mapboxgl.Popup({ offset: 25 })  // add pop ups
+    .setText(hotspot_popup_text);
+
+  var hotspot_color = "#875AAF"                             // Outdoor locations
+  if (hotspot_record.Location_T.includes("Indoor")) {       // Indoor locations
     hotspot_color = "#26C7BD"
   }
-  if (hotspot_record.Location_T == "Subway Station") {     // Subway locations
+  if (hotspot_record.Location_T == "Subway Station") {      // Subway locations
     hotspot_color = "#586DD5"
   }
-  if (hotspot_record.Location_T == "Library") {            // Library locations
+  if (hotspot_record.Location_T == "Library") {             // Library locations
     hotspot_color = "#D649B3"
   }
 
-  hotspot_marker = new mapboxgl.Marker({
+  hotspot_marker = new mapboxgl.Marker({                    // create new marker
     color: hotspot_color,
     scale: 0.75
   })
@@ -50,16 +50,16 @@ wifihotspot_data.forEach(function (hotspot_record) {
     .setPopup(hotspot_popup)
     .addTo(map)
 
-  if (hotspot_record.Location_T.includes("Outdoor")) {      // Outdoor locations
+  if (hotspot_record.Location_T.includes("Outdoor")) {     // save markers according to location type
     outdoor_markers.push(hotspot_marker)
   }
-  if (hotspot_record.Location_T.includes("Indoor")) {      // Indoor locations
+  if (hotspot_record.Location_T.includes("Indoor")) {
     indoor_markers.push(hotspot_marker)
   }
-  if (hotspot_record.Location_T == "Subway Station") {     // Subway locations
+  if (hotspot_record.Location_T == "Subway Station") {
     subway_markers.push(hotspot_marker)
   }
-  if (hotspot_record.Location_T == "Library") {            // Library locations
+  if (hotspot_record.Location_T == "Library") {
     library_markers.push(hotspot_marker)
   }
 
