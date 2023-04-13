@@ -8,11 +8,22 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
-</head>
+    </head>
 
 <body>
+    <div class="sidebar">
+        <div class="title">
+            NYU GIS Spring 2023 Favorite Pizza Shops
+        </div>
+        <div class="description">
+            The class populated an excel sheet with their favorite pizza shops, and this was used to create a visualization of favorite pizza shops.
+            Click and drag and zoom in to move around the map.
+            The colors of each marker represent programs corresponding to each student. 
+        </div>
+    </div>
     <div id="map"></div>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/script.js"></script>
 </body>
 

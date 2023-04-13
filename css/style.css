@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #map {
@@ -9,3 +10,33 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+.sidebar{
+    position: absolute;
+    width: 100%;
+    flex: 100%;
+    z-index: 10;
+    background-color: rgb(62, 77, 72);
+    border-radius: 12px;
+    margin: 25px;
+
+}
+
+.title{
+    position: absolute;
+    font-size: 20px;
+    margin-top: 25px;
+    color: white;
+    text-align: center;
+    
+}
+
+.description{
+    position: absolute;
+    font-size: 20px;
+    margin-top: 25px;
+    color: white;
+    text-align: center;
+    
+}
+
